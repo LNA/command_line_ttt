@@ -1,0 +1,1 @@
+require 'minimax_ttt'

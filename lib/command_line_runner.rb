@@ -13,22 +13,20 @@ class CommandLineRunner
   end
 
   def start_game(settings)
-    display_board
     current_player = settings[:player_one_type]
     current_mark   = settings[:player_one_mark]
     until game_over?
       play_game(settings, current_player, current_mark)
     end
-    display_board
   end
 
 private
   def play_game(settings, current_player, current_mark)
     until game_over?
+      display_board
       make_move(settings, current_player, current_mark)
       display_board
       make_move(settings, next_player(current_player, settings), next_mark(current_mark, settings))
-      display_board
     end
   end
 

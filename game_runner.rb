@@ -1,7 +1,7 @@
 $: << File.expand_path(File.dirname(__FILE__))
 require 'ai'
 require 'board'
-require 'command_line_runner'
+require 'lib/command_line_runner'
 require 'ui'
 require 'game_rules'
 

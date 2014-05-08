@@ -3,7 +3,6 @@ require 'board'
 require 'game_rules'
 require 'ui'
 
-
 class CommandLineRunner
   def initialize(ai, board, game_options, game_rules, ui)
     @ai = ai
@@ -13,7 +12,7 @@ class CommandLineRunner
     @ui = ui
   end
 
-  def start_game
+  def start_game(settings)
     display_board
     # until game_over?
     #   play_game(player_one, player_two, player_one_mark, player_two_mark)

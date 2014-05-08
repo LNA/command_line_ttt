@@ -1,16 +1,14 @@
 $: << File.expand_path(File.dirname(__FILE__))
 require 'board'
 require 'game_rules'
-require 'setup'
 require 'ui'
 
 
 class CommandLineRunner
-  def initialize(ai, board, game_rules, setup, ui)
+  def initialize(ai, board, game_rules, ui)
     @ai = ai
     @board = board
     @game_rules = game_rules
-    @setup = setup
     @ui = ui
   end
 

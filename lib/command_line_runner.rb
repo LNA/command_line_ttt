@@ -18,6 +18,7 @@ class CommandLineRunner
     until game_over?
       play_game(settings, current_player, current_mark)
     end
+    ask_to_replay_game(settings)
   end
 
 private
@@ -101,5 +102,14 @@ private
   def respond_to_invalid_move
     @ui.invalid_move_message
     play_game
+  end
+
+  def ask_to_replay_game(settings) 
+    replay(settings) if @ui.ask_to_replay_game == "Y"
+  end
+
+  def replay(settings)
+    @board.reset
+    start_game(settings)
   end
 end 

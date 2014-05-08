@@ -55,6 +55,7 @@ class UI
 
   def ask_to_replay_game
     puts REPLAY
+    gets_response
   end
 private
 

@@ -5,6 +5,7 @@ class UI
   INVALID_MOVE = "Sorry invalid move! Try again:"
   GAME_OVER    = "Game Over!"
   TIE          = "Its a tie!"
+  REPLAY       = "Would you like to play again? (Y/N)"
 
   def welcome_user
     puts WELCOME
@@ -12,14 +13,12 @@ class UI
     
   def gets_type_for(player_number)
     puts "Select Player #{player_number} type.  H for human, A for ai."
-    type = gets.chomp
-    type.upcase
+    gets_response 
   end
 
   def gets_game_piece_for(player_number)
     puts "Player #{player_number}: Please select a letter to be your game peice"
-    piece = gets.chomp
-    piece.upcase
+    gets_response 
   end
 
   def display_grid(board)
@@ -52,5 +51,14 @@ class UI
 
   def game_over
     puts GAME_OVER
+  end
+
+  def ask_to_replay_game
+    puts REPLAY
+  end
+private
+
+  def gets_response
+    gets.chomp.upcase
   end
 end

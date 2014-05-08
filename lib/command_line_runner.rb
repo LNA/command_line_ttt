@@ -13,25 +13,42 @@ class CommandLineRunner
   end
 
   def start_game(settings)
-    require 'pry'
-    binding.pry
     display_board
-    # until game_over?
-    #   play_game(player_one, player_two, player_one_mark, player_two_mark)
-    # end
+    current_player = settings[:player_one_type]
+    current_mark   = settings[:player_one_mark]
+    until game_over?
+      play_game(settings, current_player, current_mark)
+    end
     display_board
   end
 
 private
-  def play_game(player_one, player_two, player_one_mark, player_two_mark)
+  def play_game(settings, current_player, current_mark)
     until game_over?
-      make_move(player_one, player_one_mark, player_two_mark)
+      make_move(settings, current_player, current_mark)
       display_board
-      make_move(player_two, player_two_mark, player_one_mark)
+      make_move(settings, next_player(current_player, settings), next_mark(current_mark, settings))
       display_board
     end
   end
 
+  def next_mark(current_mark, settings)
+    mark = settings[:player_one_mark] ? settings[:player_two_mark] : settings[:player_one_mark]
+  end
+
+  def make_move(settings, current_player, mark)
+    unless game_over?
+      make_human_move(settings, current_player, mark) if current_player == "H"
+      make_ai_move(settings)    if current_player == "A"
+      check_for_winner if game_over?
+      check_for_tie    if game_over?
+    end
+  end
+
+  def next_player(current_player, settings)
+    current_player == settings[:player_one_type] ? settings[:player_two_type] : settings[:player_one_type]
+  end
+  
   def player_type(number)
     @ui.gets_type_for(number)
   end
@@ -52,27 +69,18 @@ private
     @ui.display_grid(@board.spaces)
   end
 
-  def make_move(player, mark, opponent_mark)
-    unless game_over?
-      make_human_move(player, mark, opponent_mark) if player == "H"
-      make_ai_move(mark, opponent_mark) if player == "A"
-      check_for_winner if game_over?
-      check_for_tie if game_over?
-    end
-  end
-
-  def make_human_move(player, mark, opponent_mark)
+  def make_human_move(settings, current_player, mark)
     unless game_over?
       @ui.ask_player_for_move
       @move = @ui.gets_move
-      check_validity_of_move(player, mark, opponent_mark)
+      check_validity_of_move(settings, current_player, mark)
     end
   end
 
-  def check_validity_of_move(player, mark, opponent_mark)
+  def check_validity_of_move(settings, current_player, mark)
     if @game_rules.valid?(@move, @board) == false
       @ui.invalid_move_message
-      make_move(player, mark, opponent_mark)
+      make_move(settings, current_player, mark)
     else
       @board.fill(@move, mark)
     end
@@ -86,7 +94,11 @@ private
     @ui.tie_message if @game_rules.winner(@board.spaces) == false
   end
 
-  def make_ai_move(mark, opponent_mark)
+  def make_ai_move(settings)
+    mark = settings[:player_one_type] if current_player = settings[:player_one_type] 
+    mark = settings[:player_two_mark] if current_player = settings[:player_two_type] 
+    opponent_mark = settings[:player_one_mark] if settings[:player_two_mark] == mark
+    opponent_mark = settings[:player_two_mark] if settings[:player_one_mark] == mark
     @move = @ai.find_best_move(@board, mark, opponent_mark)
     @board.fill(@move, mark)
   end
@@ -95,4 +107,4 @@ private
     @ui.invalid_move_message
     play_game
   end
-end
+end 

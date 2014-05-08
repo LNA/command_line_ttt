@@ -1,1 +1,1 @@
-require 'minimax_ttt'
+gem 'minimax_ttt'

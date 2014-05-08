@@ -1,11 +1,19 @@
 require 'spec_helper'
+require 'ai'
 
-describe CommandLineRunner do 
+describe CommandLineRunner do
+  
+  let (:game_rules) {GameRules.new}
+  let (:ai)         {AI.new(game_rules)}
+  let (:board)      {Board.new}
+  let (:mock_ui)    {MockUI.new}
+  let (:cl_runner)  {CommandLineRunner.new(ai, board, game_rules, mock_ui)}
+
   context '#start_game' do 
-    it 'creates a new game' do 
-    end
-
     it 'sends a welcome message' do 
+      cl_runner.start_game
+
+      mock_ui.showed_welcome_message.should == true
     end
 
     it 'asks the ui to provide the player types' do 

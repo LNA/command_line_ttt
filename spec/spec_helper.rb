@@ -1,3 +1,4 @@
+require 'command_line_runner'
 require 'rspec'
 require 'ui'
 require 'pry'

@@ -1,6 +1,5 @@
 $: << File.expand_path(File.dirname(__FILE__))
 require 'board'
-require 'game_options'
 require 'game_rules'
 require 'ui'
 

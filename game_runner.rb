@@ -12,5 +12,5 @@ ai = AI.new(game_rules)
 ui = UI.new
 setup = Setup.new(ui)
 game_options = setup.get_game_options
-command_line_runner = CommandLineRunner.new(ai, board, game_iotionsm game_rules, ui)
+command_line_runner = CommandLineRunner.new(ai, board, game_options, game_rules, ui)
 command_line_runner.start_game(game_options)

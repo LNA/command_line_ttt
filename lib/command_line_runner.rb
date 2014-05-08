@@ -1,22 +1,20 @@
 $: << File.expand_path(File.dirname(__FILE__))
 require 'board'
 require 'game_rules'
+require 'setup'
 require 'ui'
 
+
 class CommandLineRunner
-  def initialize(ai, board, game_rules, ui)
+  def initialize(ai, board, game_rules, setup, ui)
     @ai = ai
     @board = board
     @game_rules = game_rules
+    @setup = setup
     @ui = ui
   end
 
   def start_game
-    welcome_message # pull setup into own methods
-    player_one      = player_type("one")
-    player_two      = player_type("two")
-    player_one_mark = gets_mark_for("one")
-    player_two_mark = gets_mark_for("two")
     display_board
     # until game_over?
     #   play_game(player_one, player_two, player_one_mark, player_two_mark)

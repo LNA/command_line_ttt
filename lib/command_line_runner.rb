@@ -33,13 +33,13 @@ private
   end
 
   def next_mark(current_mark, settings)
-    mark = settings[:player_one_mark] ? settings[:player_two_mark] : settings[:player_one_mark]
+    current_mark == settings[:player_one_mark] ? settings[:player_two_mark] : settings[:player_one_mark]
   end
 
   def make_move(settings, current_player, mark)
     unless game_over?
       make_human_move(settings, current_player, mark) if current_player == "H"
-      make_ai_move(settings)    if current_player == "A"
+      make_ai_move(settings, current_player, mark)    if current_player == "A"
       check_for_winner if game_over?
       check_for_tie    if game_over?
     end
@@ -94,13 +94,10 @@ private
     @ui.tie_message if @game_rules.winner(@board.spaces) == false
   end
 
-  def make_ai_move(settings)
-    mark = settings[:player_one_type] if current_player = settings[:player_one_type] 
-    mark = settings[:player_two_mark] if current_player = settings[:player_two_type] 
-    opponent_mark = settings[:player_one_mark] if settings[:player_two_mark] == mark
-    opponent_mark = settings[:player_two_mark] if settings[:player_one_mark] == mark
-    @move = @ai.find_best_move(@board, mark, opponent_mark)
-    @board.fill(@move, mark)
+  def make_ai_move(settings, current_player, mark) 
+    opponent_mark = settings[:player_two_mark] if mark == settings[:player_one_mark]
+    opponent_mark = settings[:player_one_mark] if mark == settings[:player_two_mark]
+    @board.fill(@ai.find_best_move(@board, mark, opponent_mark), mark)
   end
 
   def respond_to_invalid_move

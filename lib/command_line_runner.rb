@@ -12,15 +12,15 @@ class CommandLineRunner
   end
 
   def start_game
-    welcome_message
+    welcome_message # pull setup into own methods
     player_one      = player_type("one")
     player_two      = player_type("two")
     player_one_mark = gets_mark_for("one")
     player_two_mark = gets_mark_for("two")
     display_board
-    until game_over?
-      play_game(player_one, player_two, player_one_mark, player_two_mark)
-    end
+    # until game_over?
+    #   play_game(player_one, player_two, player_one_mark, player_two_mark)
+    # end
     display_board
   end
 
@@ -39,7 +39,7 @@ private
   end
 
   def gets_mark_for(player_number)
-    @ui.gets_game_piece_for(player_number)
+    @ui.gets_mark_for(player_number)
   end
 
   def welcome_message

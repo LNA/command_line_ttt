@@ -16,7 +16,7 @@ class UI
     gets_response 
   end
 
-  def gets_game_piece_for(player_number)
+  def gets_mark_for(player_number)
     puts "Player #{player_number}: Please select a letter to be your game peice"
     gets_response 
   end

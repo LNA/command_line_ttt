@@ -13,6 +13,8 @@ class CommandLineRunner
   end
 
   def start_game(settings)
+    require 'pry'
+    binding.pry
     display_board
     # until game_over?
     #   play_game(player_one, player_two, player_one_mark, player_two_mark)

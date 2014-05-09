@@ -8,7 +8,6 @@ describe Setup do
   let (:board)      {Board.new}
   let (:mock_ui)    {MockUI.new}
   let (:setup)  {Setup.new(mock_ui, settings = {})}
-  let (:settings)   {"hi"}
 
   context '#get_game_options' do 
     it 'sends a welcome message' do 

@@ -7,7 +7,7 @@ describe Setup do
   let (:ai)         {AI.new(game_rules)}
   let (:board)      {Board.new}
   let (:mock_ui)    {MockUI.new}
-  let (:setup)  {Setup.new(mock_ui, settings = {})}
+  let (:setup)      {Setup.new(mock_ui, settings = {})}
 
   context '#get_game_options' do 
     it 'sends a welcome message' do 

@@ -58,7 +58,7 @@ class MockUI
     @showed_game_over_message = true
   end
 
-  def ask_to_replay
+  def ask_to_replay_game
     @showed_replay_message = true
   end
 end

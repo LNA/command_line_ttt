@@ -19,11 +19,11 @@ describe UI do
     end
   end
 
-  context '#gets_player_game_piece' do 
+  context '#gets_mark_for' do 
     it "gets the player game piece" do
-      ui.stub(:gets_player_game_piece).and_return("Z")
+      ui.stub(:gets_mark_for).and_return("Z")
 
-      ui.gets_player_game_piece.should == "Z"
+      ui.gets_mark_for("one").should == "Z"
     end
   end
 
@@ -82,6 +82,14 @@ describe UI do
       STDOUT.should_receive(:puts).with("Game Over!")
 
       ui.game_over
+    end
+  end
+
+  context "#ask_to_replay_game" do 
+    it "displays the messge that asks the player to replay the game" do 
+      ui.stub(:ask_to_replay_game).and_return("Y")
+
+      ui.ask_to_replay_game.should == "Y"
     end
   end
 end

@@ -57,8 +57,8 @@ class UI
     puts REPLAY
     gets_response
   end
+  
 private
-
   def gets_response
     gets.chomp.upcase
   end

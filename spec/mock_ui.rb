@@ -8,9 +8,11 @@ class MockUI
                 :invalid_message_sent,
                 :moves,
                 :provided_move,
-                :showed_welcome_message, 
+                :showed_welcome_message,
+                :showed_tie_message,
+                :showed_winner_message,
                 :stored_moves
-                
+
   def initialize
     @stored_moves = []
   end
@@ -27,28 +29,16 @@ class MockUI
     @got_mark_for = true
   end
 
+  def display_grid(board)
+    @displayed_updated_board = true
+  end
+
   def ask_player_for_move(player_number)
-    @asked_player_for_move
+    @asked_player_for_move = true
   end
 
-  def game_piece
-    "test"
-  end
-
-  def move
-    "test"
-  end
-
-  def human_wins_message
-    @showed_human_message = true
-  end
-
-  def computer_wins_message
-    @displayed_computer_message = true
-  end
-
-  def ask_for_player_move(player_number)
-    @asked_for_move = true
+  def invalid_move_message
+    @invalid_message_sent = true
   end
 
   def gets_move
@@ -56,11 +46,19 @@ class MockUI
     @stored_moves.shift
   end
 
-  def invalid_move_message
-    @invalid_message_sent = true
+  def winner_message
+    @showed_winner_message = true
   end
 
-  def display_grid(board)
-    @displayed_updated_board = true
+  def tie_message
+    @showed_tie_message = true
+  end
+
+  def game_over
+    @showed_game_over_message = true
+  end
+
+  def ask_to_replay
+    @showed_replay_message = true
   end
 end

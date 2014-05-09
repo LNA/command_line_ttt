@@ -4,10 +4,9 @@ require 'game_rules'
 require 'ui'
 
 class CommandLineRunner
-  def initialize(ai, board, game_options, game_rules, ui)
+  def initialize(ai, board, game_rules, ui)
     @ai = ai
     @board = board
-    @game_options = game_options
     @game_rules = game_rules
     @ui = ui
   end

@@ -24,7 +24,7 @@ class MockUI
   end
 
   def gets_mark_for(player_number)
-    @got_mark_for
+    @got_mark_for = true
   end
 
   def ask_player_for_move(player_number)

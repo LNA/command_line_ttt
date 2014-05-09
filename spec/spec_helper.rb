@@ -1,6 +1,7 @@
 require 'command_line_runner'
 require 'mock_ui'
 require 'rspec'
+require 'setup'
 require 'ui'
 require 'pry'
  

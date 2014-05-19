@@ -23,7 +23,6 @@ private
     until game_over?
       display_board
       make_move(settings, current_player, current_mark)
-      display_board
       current_player = next_player(current_player, settings)
       current_mark   = next_mark(current_mark, settings)
     end

@@ -14,7 +14,7 @@ class CommandLineRunner
   def start_game(settings)
     current_player = settings[:player_one_type]
     current_mark   = settings[:player_one_mark]
-    until game_over?
+    unless game_over?
       play_game(settings, current_player, current_mark)
     end
     ask_to_replay_game(settings)
@@ -22,7 +22,7 @@ class CommandLineRunner
 
 private
   def play_game(settings, current_player, current_mark)
-    until game_over?
+    unless game_over?
       display_board
       make_move(settings, current_player, current_mark)
       display_board
@@ -46,7 +46,7 @@ private
   def next_player(current_player, settings)
     current_player == settings[:player_one_type] ? settings[:player_two_type] : settings[:player_one_type]
   end
-  
+
   def player_type(number)
     @ui.gets_type_for(number)
   end
@@ -92,7 +92,7 @@ private
     @ui.tie_message if @game_rules.winner(@board.spaces) == false
   end
 
-  def make_ai_move(settings, current_player, mark) 
+  def make_ai_move(settings, current_player, mark)
     opponent_mark = settings[:player_two_mark] if mark == settings[:player_one_mark]
     opponent_mark = settings[:player_one_mark] if mark == settings[:player_two_mark]
     @board.fill(@ai.find_best_move(@board, mark, opponent_mark), mark)
@@ -103,7 +103,7 @@ private
     play_game
   end
 
-  def ask_to_replay_game(settings) 
+  def ask_to_replay_game(settings)
     replay(settings) if @ui.ask_to_replay_game == "Y"
   end
 
@@ -111,4 +111,4 @@ private
     @board.reset
     start_game(settings)
   end
-end 
+end

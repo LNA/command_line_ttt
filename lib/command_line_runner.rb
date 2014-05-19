@@ -41,18 +41,6 @@ class CommandLineRunner
     current_player == settings[:player_one_type] ? settings[:player_two_type] : settings[:player_one_type]
   end
 
-  def player_type(number)
-    @ui.gets_type_for(number)
-  end
-
-  def gets_mark_for(player_number)
-    @ui.gets_mark_for(player_number)
-  end
-
-  def welcome_message
-    @ui.welcome_user
-  end
-
   def game_over?
     @game_rules.game_over?(@board.spaces)
   end

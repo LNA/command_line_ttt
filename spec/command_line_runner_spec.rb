@@ -48,4 +48,31 @@ describe CommandLineRunner do
       runner.make_human_move(settings, current_player, current_mark)
     end
   end
+
+  context "#make_ai_move" do
+  end
+
+  context "#check_for_winner" do
+
+  end
+
+  context "#check_for_tie" do
+
+  end
+
+  context "#check_validity_of_move" do
+
+  end
+
+  context "#respond_to_invalid_move" do
+
+  end
+
+  context "#ask_to_replay_game" do
+
+  end
+
+  context "#replay" do
+
+  end
 end

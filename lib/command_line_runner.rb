@@ -34,10 +34,10 @@ private
   end
 
   def make_move(settings, current_player, mark)
-      make_human_move(settings, current_player, mark) if current_player == "H"
-      make_ai_move(settings, current_player, mark)    if current_player == "A"
-      check_for_winner if game_over?
-      check_for_tie    if game_over?
+    make_human_move(settings, current_player, mark) if current_player == "H"
+    make_ai_move(settings, current_player, mark)    if current_player == "A"
+    check_for_winner if game_over?
+    check_for_tie    if game_over?
   end
 
   def next_player(current_player, settings)

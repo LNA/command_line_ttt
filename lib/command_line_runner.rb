@@ -16,7 +16,7 @@ class CommandLineRunner
     ask_to_replay_game(settings, current_player, current_mark)
   end
 
-private
+# private
   def play_game(settings, current_player, current_mark)
     until game_over?
       display_board

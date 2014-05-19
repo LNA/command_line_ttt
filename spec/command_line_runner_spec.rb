@@ -10,13 +10,14 @@ describe CommandLineRunner do
   let (:runner)          {CommandLineRunner.new(ai, board, mock_game_rules, mock_ui)}
   let (:settings)        { {:player_one_type=>"H",
                             :player_two_type=>"A",
-                            :player_one_mark=>"Q",
-                            :player_two_mark=>"W"} }
+                            :player_one_mark=>"X",
+                            :player_two_mark=>"O"} }
 
-  context '#start_game_loop' do
-    it "receives the settings" do
-      runner.start_game_loop(settings, settings[:player_one_type], settings[:player_two_type])
-      runner.current_player.should == "H"
+  let (:current_player)  {settings[:player_one_mark]  }
+
+  context "#next_mark" do
+    it "returns O when current mark is X" do
+      runner.next_mark(current_player, settings).should == "O"
     end
   end
 end

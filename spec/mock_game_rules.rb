@@ -15,7 +15,7 @@ class MockGameRules
     @checked_for_tie = true
   end
 
-  def game_over?
+  def game_over?(board)
     @checked_for_game_over = true
   end
 

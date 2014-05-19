@@ -6,11 +6,11 @@ require 'lib/setup'
 require 'game_rules'
 require 'ui'
 
-board = Board.new
-game_rules = GameRules.new
-ai = AI.new(game_rules)
-ui = UI.new
-setup = Setup.new(ui)
-game_options = setup.get_game_options
-command_line_runner = CommandLineRunner.new(ai, board, game_rules, ui)
-command_line_runner.start_game_loop(game_options)
+board    = Board.new
+rules    = GameRules.new
+ai       = AI.new(rules)
+ui       = UI.new
+setup    = Setup.new(ui)
+settings = setup.get_game_options
+command_line_runner = CommandLineRunner.new(ai, board, rules, ui)
+command_line_runner.start_game_loop(settings, settings[:player_one_type], settings[:player_one_mark])

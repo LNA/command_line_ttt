@@ -11,11 +11,9 @@ class CommandLineRunner
     @ui = ui
   end
 
-  def start_game_loop(settings)
-    current_player = settings[:player_one_type]
-    current_mark   = settings[:player_one_mark]
+  def start_game_loop(settings, current_player, current_mark)
     play_game(settings, current_player, current_mark)
-    ask_to_replay_game(settings)
+    ask_to_replay_game(settings, current_player, current_mark)
   end
 
 private
@@ -99,12 +97,12 @@ private
     play_game
   end
 
-  def ask_to_replay_game(settings)
-    replay(settings) if @ui.ask_to_replay_game == "Y"
+  def ask_to_replay_game(settings, current_player, current_mark)
+    replay(settings, current_player, current_mark) if @ui.ask_to_replay_game == "Y"
   end
 
-  def replay(settings)
+  def replay(settings, current_player, current_mark)
     @board.reset
-    start_game(settings)
+    start_game_loop(settings, current_player, current_mark)
   end
 end

@@ -13,11 +13,25 @@ describe CommandLineRunner do
                             :player_one_mark=>"X",
                             :player_two_mark=>"O"} }
 
-  let (:current_player)  {settings[:player_one_mark]  }
+  let (:current_player) {settings[:player_one_type]}
+  let (:current_mark)  {settings[:player_one_mark]  }
+
+  context "#game_over" do
+    it "checks for a game over" do
+      runner.start_game_loop(settings, current_player, current_mark)
+      mock_game_rules.checked_for_game_over.should == true
+    end
+  end
 
   context "#next_mark" do
     it "returns O when current mark is X" do
-      runner.next_mark(current_player, settings).should == "O"
+      runner.next_mark(current_mark, settings).should == "O"
+    end
+  end
+
+  context "#make_human_move" do
+    it "updates the board with a human move" do
+      runner.make_human_move(settings, current_player, current_mark)
     end
   end
 end

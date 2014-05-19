@@ -4,7 +4,6 @@ require 'pry'
 class Setup
   attr_accessor :player_one_type
   def initialize(ui, settings = {} )
-    @player_one_type = settings[:player_one_type]
     @ui = ui
   end
 

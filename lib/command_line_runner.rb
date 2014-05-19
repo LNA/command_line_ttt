@@ -11,22 +11,21 @@ class CommandLineRunner
     @ui = ui
   end
 
-  def start_game(settings)
+  def start_game_loop(settings)
     current_player = settings[:player_one_type]
     current_mark   = settings[:player_one_mark]
-    unless game_over?
-      play_game(settings, current_player, current_mark)
-    end
+    play_game(settings, current_player, current_mark)
     ask_to_replay_game(settings)
   end
 
 private
   def play_game(settings, current_player, current_mark)
-    unless game_over?
+    until game_over?
       display_board
       make_move(settings, current_player, current_mark)
       display_board
-      make_move(settings, next_player(current_player, settings), next_mark(current_mark, settings))
+      current_player = next_player(current_player, settings)
+      current_mark   = next_mark(current_mark, settings)
     end
   end
 
@@ -35,12 +34,10 @@ private
   end
 
   def make_move(settings, current_player, mark)
-    unless game_over?
       make_human_move(settings, current_player, mark) if current_player == "H"
       make_ai_move(settings, current_player, mark)    if current_player == "A"
       check_for_winner if game_over?
       check_for_tie    if game_over?
-    end
   end
 
   def next_player(current_player, settings)

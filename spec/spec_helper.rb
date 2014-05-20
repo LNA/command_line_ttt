@@ -1,4 +1,5 @@
 require 'command_line_runner'
+require 'mock_board'
 require 'mock_ui'
 require 'mock_game_rules'
 require 'rspec'

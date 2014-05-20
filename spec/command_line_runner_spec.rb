@@ -5,9 +5,9 @@ describe CommandLineRunner do
 
   let (:mock_game_rules) {MockGameRules.new}
   let (:ai)              {AI.new(mock_game_rules)}
-  let (:board)           {Board.new}
+  let (:mock_board)      {MockBoard.new}
   let (:mock_ui)         {MockUI.new}
-  let (:runner)          {CommandLineRunner.new(ai, board, mock_game_rules, mock_ui)}
+  let (:runner)          {CommandLineRunner.new(ai, mock_board, mock_game_rules, mock_ui)}
   let (:settings)        { {:player_one_type=>"H",
                             :player_two_type=>"A",
                             :player_one_mark=>"X",
@@ -25,7 +25,7 @@ describe CommandLineRunner do
 
   context "display_game" do
     it "checks to see that the board was displayed" do
-      runner.start_game_loop(settings, current_player, current_mark)
+      runner.display_board
       mock_ui.displayed_updated_board.should == true
     end
   end
@@ -42,7 +42,6 @@ describe CommandLineRunner do
     end
   end
 
-
   context "#make_human_move" do
     it "updates the board with a human move" do
       runner.make_human_move(settings, current_player, current_mark)
@@ -53,11 +52,17 @@ describe CommandLineRunner do
   end
 
   context "#check_for_winner" do
-
+    it "trigges a check for a winner" do
+      runner.start_game_loop(settings, current_player, current_mark)
+      mock_game_rules.checked_for_winner.should == true
+    end
   end
 
   context "#check_for_tie" do
-
+    it "checks for a tie" do
+      runner.start_game_loop(settings, current_player, current_mark)
+      mock_game_rules.ckecked_for_tie.should == true
+    end
   end
 
   context "#check_validity_of_move" do

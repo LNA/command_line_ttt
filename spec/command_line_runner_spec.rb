@@ -77,10 +77,15 @@ describe CommandLineRunner do
   end
 
   context "#ask_to_replay_game" do
-
+    it "asks to replay the game" do
+      mock_ui.showed_replay_message == true
+    end
   end
 
   context "#replay" do
-
+    it "triggers the board reset" do
+      runner.replay(settings, current_player, current_mark)
+      mock_board.resets_board.should == true
+    end
   end
 end

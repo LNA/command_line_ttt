@@ -8,8 +8,9 @@ class MockUI
                 :invalid_message_sent,
                 :moves,
                 :provided_move,
-                :showed_welcome_message,
+                :showed_replay_message,
                 :showed_tie_message,
+                :showed_welcome_message,
                 :showed_winner_message,
                 :stored_moves
 

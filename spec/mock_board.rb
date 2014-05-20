@@ -1,6 +1,7 @@
 class MockBoard
   attr_accessor :spaces,
-                :filled_board
+                :filled_board,
+                :resets_board
 
   def spaces
     @spaces = [nil] * 9
@@ -8,5 +9,9 @@ class MockBoard
 
   def fill(move, board)
     @filled_board = true
+  end
+
+  def reset
+    @resets_board = true
   end
 end

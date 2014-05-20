@@ -45,6 +45,7 @@ describe CommandLineRunner do
   context "#make_human_move" do
     it "updates the board with a human move" do
       runner.make_human_move(settings, current_player, current_mark)
+      # Too hard to test
     end
   end
 

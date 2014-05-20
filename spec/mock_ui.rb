@@ -46,7 +46,7 @@ class MockUI
     @stored_moves.shift
   end
 
-  def winner_message
+  def winner_message(winner)
     @showed_winner_message = true
   end
 

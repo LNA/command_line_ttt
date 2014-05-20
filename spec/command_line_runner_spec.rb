@@ -53,7 +53,7 @@ describe CommandLineRunner do
 
   context "#check_for_winner" do
     it "trigges a check for a winner" do
-      runner.start_game_loop(settings, current_player, current_mark)
+      runner.make_move(settings, current_player, current_mark)
       mock_game_rules.checked_for_winner.should == true
     end
   end

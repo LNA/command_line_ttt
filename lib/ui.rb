@@ -10,15 +10,15 @@ class UI
   def welcome_user
     puts WELCOME
   end
-    
+
   def gets_type_for(player_number)
     puts "Select Player #{player_number} type.  H for human, A for ai."
-    gets_response 
+    gets_response
   end
 
   def gets_mark_for(player_number)
     puts "Player #{player_number}: Please select a letter to be your game peice"
-    gets_response 
+    gets_response
   end
 
   def display_grid(board)
@@ -57,7 +57,7 @@ class UI
     puts REPLAY
     gets_response
   end
-  
+
 private
   def gets_response
     gets.chomp.upcase

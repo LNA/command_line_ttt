@@ -1,13 +1,13 @@
 require 'spec_helper'
-require 'ai'
+require 'mock_ai'
 
 describe CommandLineRunner do
 
   let (:mock_game_rules) {MockGameRules.new}
-  let (:ai)              {AI.new(mock_game_rules)}
+  let (:mock_ai)         {MockAI.new}
   let (:mock_board)      {MockBoard.new}
   let (:mock_ui)         {MockUI.new}
-  let (:runner)          {CommandLineRunner.new(ai, mock_board, mock_game_rules, mock_ui)}
+  let (:runner)          {CommandLineRunner.new(mock_ai, mock_board, mock_game_rules, mock_ui)}
   let (:settings)        { {:player_one_type=>"H",
                             :player_two_type=>"A",
                             :player_one_mark=>"X",
@@ -49,6 +49,9 @@ describe CommandLineRunner do
   end
 
   context "#make_ai_move" do
+    it "triggers an ai move" do
+      # Too hard to test
+    end
   end
 
   context "#check_for_winner" do
@@ -59,18 +62,18 @@ describe CommandLineRunner do
   end
 
   context "#check_for_tie" do
-    it "checks for a tie" do
-      runner.start_game_loop(settings, current_player, current_mark)
-      mock_game_rules.ckecked_for_tie.should == true
+    it "triggers a winner chekck for for a tie" do
+      runner.check_for_tie
+      mock_game_rules.checked_for_winner.should == true
     end
   end
 
   context "#check_validity_of_move" do
-
-  end
-
-  context "#respond_to_invalid_move" do
-
+    it "triggers a check for validity of move" do
+      @move = 0
+      runner.check_validity_of_move(settings, current_player, current_mark)
+      mock_game_rules.checked_validity_of_move.should == true
+    end
   end
 
   context "#ask_to_replay_game" do

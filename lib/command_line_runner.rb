@@ -80,11 +80,6 @@ class CommandLineRunner
     @board.fill(@ai.find_best_move(@board, mark, opponent_mark), mark)
   end
 
-  def respond_to_invalid_move
-    @ui.invalid_move_message
-    play_game
-  end
-
   def ask_to_replay_game(settings, current_player, current_mark)
     replay(settings, current_player, current_mark) if @ui.ask_to_replay_game == "Y"
   end

@@ -78,6 +78,7 @@ describe CommandLineRunner do
 
   context "#ask_to_replay_game" do
     it "asks to replay the game" do
+      runner.replay(settings, current_player, current_mark)
       mock_ui.showed_replay_message == true
     end
   end

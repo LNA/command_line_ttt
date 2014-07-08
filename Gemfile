@@ -1,1 +1,1 @@
-gem 'minimax_ttt'
+gem 'minimax_ttt', '1.0.1'

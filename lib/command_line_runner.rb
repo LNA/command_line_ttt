@@ -42,11 +42,11 @@ class CommandLineRunner
   end
 
   def game_over?
-    @game_rules.game_over?(@board.spaces)
+    @game_rules.game_over?(@board)
   end
 
   def display_board
-    @ui.display_grid(@board.spaces)
+    @ui.display_grid(@board)
   end
 
   def make_human_move(settings, current_player, mark)
@@ -58,34 +58,37 @@ class CommandLineRunner
   end
 
   def check_validity_of_move(settings, current_player, mark)
-    if @game_rules.valid?(@move, @board) == false
+    if @game_rules.valid?(@board, @move) == false
       @ui.invalid_move_message
       make_move(settings, current_player, mark)
     else
-      @board.fill(@move, mark)
+      @board[@move.to_i] = mark
     end
   end
 
   def check_for_winner
-    @ui.winner_message(@game_rules.winner(@board.spaces)) if @game_rules.winner(@board.spaces) != false
+    @ui.winner_message(@game_rules.winner(@board)) if @game_rules.winner(@board) != false
   end
 
   def check_for_tie
-    @ui.tie_message if @game_rules.winner(@board.spaces) == false
+    @ui.tie_message if @game_rules.winner(@board) == false
   end
 
   def make_ai_move(settings, current_player, mark)
     opponent_mark = settings[:player_two_mark] if mark == settings[:player_one_mark]
     opponent_mark = settings[:player_one_mark] if mark == settings[:player_two_mark]
-    @board.fill(@ai.find_best_move(@board, mark, opponent_mark), mark)
+    best_move = @ai.find_best_move(@board, mark, opponent_mark)
+    @board[best_move] = mark
   end
 
   def ask_to_replay_game(settings, current_player, current_mark)
-    replay(settings, current_player, current_mark) if @ui.ask_to_replay_game == "Y"
+    if @ui.ask_to_replay_game == "Y"
+      replay(settings, current_player, current_mark)
+    end
   end
 
   def replay(settings, current_player, current_mark)
-    @board.reset
+    @board = [nil] * 9
     start_game_loop(settings, current_player, current_mark)
   end
 end

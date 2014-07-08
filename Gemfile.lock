@@ -1,7 +1,9 @@
 GEM
   specs:
+    minimax_ttt (0.0.9)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  minimax_ttt (= 0.0.9)
